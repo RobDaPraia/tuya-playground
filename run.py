@@ -9,8 +9,8 @@ https://github.com/jasonacox/tinytuya
 
 import time
 import json
-import tinytuya
-from ThermostatDevice import ThermostatDevice
+from AvattoThermostat import AvattoThermostat
+from EuromHeater import EuromHeater
 
 def Heater(device):  
     '''
@@ -29,7 +29,7 @@ def Heater(device):
     | Fault               | 12   |         |                                                    |
     '''      
  
-    d = tinytuya.OutletDevice(device["deviceId"], device["deviceHost"], device["deviceLocalKey"])
+    d = EuromHeater(device["deviceId"], device["deviceHost"], device["deviceLocalKey"])
     d.set_version(3.3)
     data = d.status() 
     print('Device: '+ device["deviceName"] + ', status: %r' % data)
@@ -59,7 +59,7 @@ def Thermostat(device):
     | Lower temperature limit  | 26   |         |              |
     '''    
  
-    d = ThermostatDevice(device["deviceId"], device["deviceHost"], device["deviceLocalKey"])
+    d = AvattoThermostat(device["deviceId"], device["deviceHost"], device["deviceLocalKey"])
     d.set_version(3.3)
     data = d.status() 
     print('Device: '+ device["deviceName"] + ', status: %r' % data)
@@ -90,9 +90,9 @@ with open('local.settings.json', 'r') as f:
 for device in data:
     print ('Device: '+ device["deviceName"])
     match device["deviceType"]:
-        case "Heater":
+        case "EuromHeater":
             Heater(device)
-        case "Thermostat":
+        case "AvattoThermostat":
             Thermostat(device)
         case _:
             print("Don't know what to do with deviceType: "+ device["deviceType"])

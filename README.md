@@ -9,3 +9,7 @@ To install the dependencies:
 ```command
 pip install -r requirements.txt
 ```
+
+## Credits
+
+- [GitHub - jasonacox/tinytuya](https://github.com/jasonacox/tinytuya)

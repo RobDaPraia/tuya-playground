@@ -1,16 +1,15 @@
 from tinytuya.core import Device
 
 """
- Python module to interface with Tuya Thermostat devices
- Testes with Avatto
-
+ Python module to interface with Tuya Eurom heater
+ 
  Local Control Classes
-    ThermostatDevice(..., version=3.3)
+    EuromHeater(..., version=3.3)
         This class uses a default version of 3.3
         See OutletDevice() for the other constructor arguments
 
  Functions
-    ThermostatDevice:
+    EuromHeater:
         status_json()
         get_room_temperature()
         get_target_temperature()
@@ -50,9 +49,9 @@ from tinytuya.core import Device
 """
 
 
-class ThermostatDevice(Device):
+class EuromHeater(Device):
     """
-    Represents a Tuya based Thermostat
+    Represents a Tuya based Eurom heater
     """
 
     DPS_POWER = "1"
@@ -63,7 +62,7 @@ class ThermostatDevice(Device):
         # set the default version to 3.3 as there are no 3.1 devices
         if 'version' not in kwargs or not kwargs['version']:
             kwargs['version'] = 3.3
-        super(ThermostatDevice, self).__init__(*args, **kwargs)
+        super(EuromHeater, self).__init__(*args, **kwargs)
 
     def status_json(self):
         """Wrapper around status() that replace DPS indices with human readable labels."""

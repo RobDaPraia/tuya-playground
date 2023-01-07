@@ -4,13 +4,13 @@
       "deviceId": "<secret>",
       "deviceHost": "<secret>",
       "deviceLocalKey": "<secret>",
-      "deviceType": "Heater"
+      "deviceType": "EuromHeater"
     },
     {
       "deviceName": "Lucy Thermostat",
       "deviceId": "<secret>",
       "deviceHost": "<secret>",
       "deviceLocalKey": "<secret>",
-      "deviceType": "Thermostat"
+      "deviceType": "AvattoThermostat"
     }
   ]
