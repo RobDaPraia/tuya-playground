@@ -53,7 +53,8 @@ Functions
 
 class AvattoThermostat(Device):
     """
-    Represents a Tuya based Avatto Thermostat
+    Represents an Avatto Thermostat with Tuya integration, 
+    DPs from Tuya IoT Platform https://eu.iot.tuya.com/
 
     | DP ID                    | Code | Type    | Values       |
     | ------------------------ | ---- | ------- | ------------ |
@@ -74,6 +75,7 @@ class AvattoThermostat(Device):
     | Lower temperature limit  | 26   |         |              |
     """
 
+    # Implementation of DPs we need
     DPS_POWER = "1"
     DPS_SET_TEMP = "16"
     DPS_CUR_TEMP = "24"

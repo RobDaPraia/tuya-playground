@@ -54,7 +54,8 @@ Functions
 
 class EuromHeater(Device):
     """
-    Represents a Tuya based Eurom heater
+    Represents an Eurom heater with Tuya integration
+    DPs from Tuya IoT Platform https://eu.iot.tuya.com/
 
     | DP ID               | Code | Type    | Values                                             |
     | ------------------- | ---- | ------- | -------------------------------------------------- |
@@ -69,6 +70,7 @@ class EuromHeater(Device):
     | Fault               | 12   |         |                                                    |
     """
 
+    # Implementation of DPs we need
     DPS_POWER = "1"
     DPS_SET_TEMP = "16"
     DPS_CUR_TEMP = "24"
