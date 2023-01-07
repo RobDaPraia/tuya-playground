@@ -2,13 +2,16 @@ from tinytuya.core import Device
 
 """
  Python module to interface with Tuya Eurom heater
- 
- Local Control Classes
-    EuromHeater(..., version=3.3)
-        This class uses a default version of 3.3
-        See OutletDevice() for the other constructor arguments
 
- Functions
+Based on TinyTuya 
+https://github.com/jasonacox/tinytuya
+
+Local Control Classes
+EuromHeater(..., version=3.3)
+    This class uses a default version of 3.3
+    See OutletDevice() for the other constructor arguments
+
+Functions
     EuromHeater:
         status_json()
         get_room_temperature()
@@ -52,6 +55,18 @@ from tinytuya.core import Device
 class EuromHeater(Device):
     """
     Represents a Tuya based Eurom heater
+
+    | DP ID               | Code | Type    | Values                                             |
+    | ------------------- | ---- | ------- | -------------------------------------------------- |
+    | Power               | 1    | Boolean | {True,False}                                       |
+    | Set temperature     | 2    | Integer | {"unit":"℃","min":0,"max":37,"scale":0,"step":1}  |
+    | Current temperature | 3    | Integer | {"unit":"℃","min":-9,"max":99,"scale":0,"step":1} |
+    | Mode                | 4    | Enum    | ["p","m"]                                          |
+    | Setting             | 101  | Enum    | ["low","mid","high","off"]                         |
+    | Eco                 | 102  | Boolean | {True,False}                                       |
+    | ?                   | 103  |         |                                                    |
+    | Smart Timer         | 104  |         |                                                    |
+    | Fault               | 12   |         |                                                    |
     """
 
     DPS_POWER = "1"

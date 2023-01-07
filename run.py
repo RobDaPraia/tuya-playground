@@ -14,19 +14,7 @@ from EuromHeater import EuromHeater
 
 def Heater(device):  
     '''
-    Eurocom Tuya Heater
-
-    | DP ID               | Code | Type    | Values                                             |
-    | ------------------- | ---- | ------- | -------------------------------------------------- |
-    | Power               | 1    | Boolean | {True,False}                                       |
-    | Set temperature     | 2    | Integer | {"unit":"℃","min":0,"max":37,"scale":0,"step":1}  |
-    | Current temperature | 3    | Integer | {"unit":"℃","min":-9,"max":99,"scale":0,"step":1} |
-    | Mode                | 4    | Enum    | ["p","m"]                                          |
-    | Setting             | 101  | Enum    | ["low","mid","high","off"]                         |
-    | Eco                 | 102  | Boolean | {True,False}                                       |
-    | ?                   | 103  |         |                                                    |
-    | Smart Timer         | 104  |         |                                                    |
-    | Fault               | 12   |         |                                                    |
+    Test interaction with Eurocom Tuya Heater 
     '''      
  
     d = EuromHeater(device["deviceId"], device["deviceHost"], device["deviceLocalKey"])
@@ -38,25 +26,7 @@ def Heater(device):
 
 def Thermostat(device):
     '''
-    Avatto Tuya Thermostat
-
-    | DP ID                    | Code | Type    | Values       |
-    | ------------------------ | ---- | ------- | ------------ |
-    | Power                    | 1    | Boolean | {True,False} |
-    | Mode                     | 2    |         |              |
-    | ?                        | 36   |         |              |
-    | Switch Diff              | 101  |         |              |
-    | Week Program             | 38   |         |              |
-    | Program Mode             | 102  |         |              |
-    | Restore factory settings | 39   |         |              |
-    | Child lock               | 40   |         |              |
-    | ?                        | 10   |         |              |
-    | Sensor select            | 43   |         |              |
-    | Fault alarm              | 45   |         |              |
-    | Set temperature          | 16   |         |              |
-    | Upper temperature limit  | 19   |         |              |
-    | Current temperature      | 24   |         |              |
-    | Lower temperature limit  | 26   |         |              |
+    Test interaction with Avatto Tuya Thermostat 
     '''    
  
     d = AvattoThermostat(device["deviceId"], device["deviceHost"], device["deviceLocalKey"])

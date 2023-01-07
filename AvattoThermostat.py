@@ -1,14 +1,17 @@
 from tinytuya.core import Device
 
 """
- Python module to interface with Tuya Avatto Thermostat
+Python module to interface with Tuya Avatto Thermostat
 
- Local Control Classes
-    AvattoThermostat(..., version=3.3)
-        This class uses a default version of 3.3
-        See OutletDevice() for the other constructor arguments
+Based on TinyTuya 
+https://github.com/jasonacox/tinytuya
 
- Functions
+Local Control Classes
+AvattoThermostat(..., version=3.3)
+    This class uses a default version of 3.3
+    See OutletDevice() for the other constructor arguments
+
+Functions
     AvattoThermostat:
         status_json()
         get_room_temperature()
@@ -48,10 +51,27 @@ from tinytuya.core import Device
         receive()
 """
 
-
 class AvattoThermostat(Device):
     """
     Represents a Tuya based Avatto Thermostat
+
+    | DP ID                    | Code | Type    | Values       |
+    | ------------------------ | ---- | ------- | ------------ |
+    | Power                    | 1    | Boolean | {True,False} |
+    | Mode                     | 2    |         |              |
+    | ?                        | 36   |         |              |
+    | Switch Diff              | 101  |         |              |
+    | Week Program             | 38   |         |              |
+    | Program Mode             | 102  |         |              |
+    | Restore factory settings | 39   |         |              |
+    | Child lock               | 40   |         |              |
+    | ?                        | 10   |         |              |
+    | Sensor select            | 43   |         |              |
+    | Fault alarm              | 45   |         |              |
+    | Set temperature          | 16   |         |              |
+    | Upper temperature limit  | 19   |         |              |
+    | Current temperature      | 24   |         |              |
+    | Lower temperature limit  | 26   |         |              |
     """
 
     DPS_POWER = "1"
