@@ -1,0 +1,16 @@
+[
+    {
+      "deviceName": "Rob Heater",
+      "deviceId": "<secret>",
+      "deviceHost": "<secret>",
+      "deviceLocalKey": "<secret>",
+      "deviceType": "Heater"
+    },
+    {
+      "deviceName": "Lucy Thermostat",
+      "deviceId": "<secret>",
+      "deviceHost": "<secret>",
+      "deviceLocalKey": "<secret>",
+      "deviceType": "Thermostat"
+    }
+  ]
