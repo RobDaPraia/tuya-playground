@@ -56,23 +56,24 @@ class AvattoThermostat(Device):
     Represents an Avatto Thermostat with Tuya integration, 
     DPs from Tuya IoT Platform https://eu.iot.tuya.com/
 
-    | DP ID                    | Code | Type    | Values       |
-    | ------------------------ | ---- | ------- | ------------ |
-    | Power                    | 1    | Boolean | {True,False} |
-    | Mode                     | 2    |         |              |
-    | ?                        | 36   |         |              |
-    | Switch Diff              | 101  |         |              |
-    | Week Program             | 38   |         |              |
-    | Program Mode             | 102  |         |              |
-    | Restore factory settings | 39   |         |              |
-    | Child lock               | 40   |         |              |
-    | ?                        | 10   |         |              |
-    | Sensor select            | 43   |         |              |
-    | Fault alarm              | 45   |         |              |
-    | Set temperature          | 16   |         |              |
-    | Upper temperature limit  | 19   |         |              |
-    | Current temperature      | 24   |         |              |
-    | Lower temperature limit  | 26   |         |              |
+    | DP ID                    | Code | Type    | Values                                            |
+    | ------------------------ | ---- | ------- | ------------------------------------------------- |
+    | Switch                   | 1    | Boolean | {True,False}                                      |
+    | Mode                     | 2    | Enum    | {"range":["auto", "manual"]}                      |
+    | ?                        | 36   |         |                                                   |
+    | Switch Diff              | 101  |         |                                                   |
+    | Week Program             | 38   |         |                                                   |
+    | Program Mode             | 102  |         |                                                   |
+    | Restore factory settings | 39   | Boolean | "{true,false}"                                    |
+    | Child lock               | 40   | Boolean | "{true,false}"                                    |
+    | ?                        | 10   |         |                                                   |
+    | Sensor select            | 43   | Enum    | {"range":["in","out"]}                            |
+    | Fault alarm              | 45   |         |                                                   |
+    | Set temperature          | 16   |         | {"unit":"℃","min":5,"max":90,"scale":0,"step":1}  |
+    | Upper temperature limit  | 19   |         | {"unit":"℃","min":30,"max":90,"scale":0,"step":1} |
+    | Current temperature      | 24   |         |                                                   |
+    | Lower temperature limit  | 26   |         | {"unit":"℃","min":5,"max":20,"scale":0,"step":1}  |
+
     """
 
     # Implementation of DPs we need
@@ -87,13 +88,17 @@ class AvattoThermostat(Device):
         super(AvattoThermostat, self).__init__(*args, **kwargs)
 
     def status_json(self):
-        """Wrapper around status() that replace DPS indices with human readable labels."""
+        """Wrapper around status() to replace DPS indices with human readable labels."""
         status = self.status()["dps"]
         return {
-            "Power On": status[self.DPS_POWER],
-            "Set temperature": status[self.DPS_SET_TEMP],
-            "Current temperature": status[self.DPS_CUR_TEMP],
+            "Power On": self.get_power_mode(),
+            "Set temperature": self.get_target_temperature(),
+            "Current temperature": self.get_room_temperature(),
         }
+
+    def get_power_mode(self):
+        status = self.status()["dps"]
+        return status[self.DPS_POWER]
 
     def get_room_temperature(self):
         status = self.status()["dps"]
@@ -117,3 +122,4 @@ class AvattoThermostat(Device):
 
         self.set_value(self.DPS_SET_TEMP, t)
 
+   

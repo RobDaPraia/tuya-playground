@@ -59,7 +59,7 @@ class EuromHeater(Device):
 
     | DP ID               | Code | Type    | Values                                             |
     | ------------------- | ---- | ------- | -------------------------------------------------- |
-    | Power               | 1    | Boolean | {True,False}                                       |
+    | Switch              | 1    | Boolean | {True,False}                                       |
     | Set temperature     | 2    | Integer | {"unit":"℃","min":0,"max":37,"scale":0,"step":1}  |
     | Current temperature | 3    | Integer | {"unit":"℃","min":-9,"max":99,"scale":0,"step":1} |
     | Mode                | 4    | Enum    | ["p","m"]                                          |
@@ -72,9 +72,12 @@ class EuromHeater(Device):
 
     # Implementation of DPs we need
     DPS_POWER = "1"
-    DPS_SET_TEMP = "16"
-    DPS_CUR_TEMP = "24"
-  
+    DPS_SET_TEMP = "2"
+    DPS_CUR_TEMP = "3"
+    DPS_MODE = "4"
+    DPS_SETTING = "101"
+    DPS_ECO = "102"
+     
     def __init__(self, *args, **kwargs):
         # set the default version to 3.3 as there are no 3.1 devices
         if 'version' not in kwargs or not kwargs['version']:
@@ -82,17 +85,20 @@ class EuromHeater(Device):
         super(EuromHeater, self).__init__(*args, **kwargs)
 
     def status_json(self):
-        """Wrapper around status() that replace DPS indices with human readable labels."""
-        status = self.status()["dps"]
+        """Wrapper around status() to replace DPS indices with human readable labels."""
         return {
-            "Power On": status[self.DPS_POWER],
-            "Set temperature": status[self.DPS_SET_TEMP],
-            "Current temperature": status[self.DPS_CUR_TEMP],
+            "Power On": self.get_power_mode(),
+            "Set temperature": self.get_target_temperature(),
+            "Current temperature": self.get_room_temperature(),
         }
+
+    def get_power_mode(self):
+        status = self.status()["dps"]
+        return status[self.DPS_POWER]
 
     def get_room_temperature(self):
         status = self.status()["dps"]
-        return status[self.DPS_CUR_TEMP]/10
+        return status[self.DPS_CUR_TEMP]
 
     def get_target_temperature(self):
         status = self.status()["dps"]
@@ -112,3 +118,32 @@ class EuromHeater(Device):
 
         self.set_value(self.DPS_SET_TEMP, t)
 
+    def get_operating_mode(self):
+        status = self.status()["dps"]
+        return status[self.DPS_MODE]
+
+    def set_operating_mode(self, mode):
+        if mode not in ("p", "m"):
+            return
+        self.set_value(self.DPS_MODE, mode)
+
+    def get_setting(self):
+        status = self.status()["dps"]
+        return status[self.DPS_SETTING]
+
+    def set_setting(self, mode):
+        if mode not in ("low","mid","high","off"):
+            return
+        self.set_value(self.DPS_SETTING, mode)
+
+    def get_eco_mode(self):
+        status = self.status()["dps"]
+        return status[self.DPS_ECO]
+
+    def eco_on(self):
+        """Set ECO mode on"""
+        self.set_value(self.DPS_ECO, True)
+    
+    def eco_off(self):
+        """Turn ECO mode off"""
+        self.set_value(self.DPS_ECO, False)
