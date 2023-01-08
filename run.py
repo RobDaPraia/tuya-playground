@@ -9,6 +9,7 @@ https://github.com/jasonacox/tinytuya
 
 import time
 import json
+import tinytuya
 from AvattoThermostat import AvattoThermostat
 from EuromHeater import EuromHeater
 
@@ -124,6 +125,15 @@ def Thermostat(device):
 
     return 
 
+def Scan():
+    # return payload of devices
+    # Seems not working, Scan Complete!  Found 0 devices.
+    devices = tinytuya.deviceScan(True)
+    print('Devices found: %r' % devices)
+    return 
+
+#Scan()
+
 with open('local.settings.json', 'r') as f:
   data = json.load(f)
 
@@ -137,10 +147,7 @@ for device in data:
         case _:
             print("Don't know what to do with deviceType: "+ device["deviceType"])
 
-# return payload of devices
-# Seems not working, Scan Complete!  Found 0 devices.
-#devices = tinytuya.deviceScan(True)
-#print('Devices found: %r' % devices)
+
 
 
 
