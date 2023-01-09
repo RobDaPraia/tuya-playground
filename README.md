@@ -38,3 +38,8 @@ J-WT81-16A, ME81H, WIFIF, 16A
 - [YouTube - Local Control of Tuya Devices // No Cloud Needed // LocalTuya](https://www.youtube.com/watch?v=VCd0kYWLvMQ&ab_channel=ThisSmartHouse)
 - [YouTube - Adding Local Tuya Devices (Dekala Arkenstone Lamp)](https://www.youtube.com/watch?v=eOtslB2ilf0&ab_channel=SlackerLabs)
 - [Tuya Heater using Tasmota and Home Assistant Climate Entities](https://blakadder.com/tuya-climate/)
+- [GitHub - TuyaAPI/cli](https://github.com/TuyaAPI/cli)
+- [Develop Tuya-Compatible Home Assistant Drivers](https://medium.com/@ekfz.t/develop-tuya-compatible-home-assistant-drivers-f74ac6e2e08c)
+- [GitHub - tuya/tuya-home-assistant](https://github.com/tuya/tuya-home-assistant)
+- [GitHub - tuya/tuya-iot-python-sdk](https://github.com/tuya/tuya-iot-python-sdk)
+- [Home Assistant - Tuya](https://www.home-assistant.io/integrations/tuya/)
